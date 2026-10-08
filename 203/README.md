@@ -9,7 +9,7 @@ Aplicación de escritorio para la gestión de notas desarrollada en Python usand
   - `Enter` para agregar notas.
   - `Escribir en la búsqueda` para filtrar dinámicamente.
   - `Doble clic` en una nota para editarla.
-  - `Botones` para interactuar con la lista.
+  - Clic en los botones **Agregar**, **Editar**, **Eliminar** y el selector de tema.
 
 ## Extensiones implementadas
 
@@ -19,7 +19,7 @@ Aplicación de escritorio para la gestión de notas desarrollada en Python usand
 
 ## Requisitos e Instalación
 
-- Python 3.x
+- Python 3.10 o superior.
 - Tkinter (incluido en Python en Windows/Mac o instalado vía `sudo pacman -S python` en Arch Linux).
 
 ## Cómo ejecutar

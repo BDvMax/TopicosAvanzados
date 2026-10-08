@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "guiutils"
+version = "0.1.0"
+description = "Componentes reutilizables de Tkinter: ValidatedEntry y slug()"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "Uso educativo" }
+dependencies = []
+
+[tool.setuptools]
+packages = ["guiutils"]

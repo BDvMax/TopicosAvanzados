@@ -20,6 +20,7 @@ class NotasApp(tk.Tk):
 
         # Estado inicial
         self.notas = []          # Lista principal de notas
+        self.indices_visibles = []
         self.es_modo_oscuro = True
         self.style = ttk.Style(self)
         
@@ -140,11 +141,10 @@ class NotasApp(tk.Tk):
             messagebox.showinfo("Atención", "Selecciona una nota para eliminar.")
             return
         
-        texto_seleccionado = self.lista_box.get(sel[0])
-        if texto_seleccionado in self.notas:
-            self.notas.remove(texto_seleccionado)
-            self.guardar_notas()
-            self.filtrar_notas()
+        idx_real = self.indices_visibles[sel[0]]
+        self.notas.pop(idx_real)
+        self.guardar_notas()
+        self.filtrar_notas()
 
     def editar_nota(self):
         sel = self.lista_box.curselection()
@@ -153,7 +153,7 @@ class NotasApp(tk.Tk):
             return
         
         texto_actual = self.lista_box.get(sel[0])
-        idx_real = self.notas.index(texto_actual)
+        idx_real = self.indices_visibles[sel[0]]
 
         nuevo_texto = simpledialog.askstring("Editar Nota", "Modifica tu nota:", initialvalue=texto_actual)
         if nuevo_texto and nuevo_texto.strip():
@@ -168,10 +168,12 @@ class NotasApp(tk.Tk):
         """Filtra la lista mostrada según el texto ingresado en la búsqueda."""
         criterio = self.input_buscar.get().strip().lower()
         self.lista_box.delete(0, "end")
+        self.indices_visibles = []
 
-        for nota in self.notas:
+        for idx, nota in enumerate(self.notas):
             if criterio in nota.lower():
                 self.lista_box.insert("end", nota)
+                self.indices_visibles.append(idx)
 
         self.actualizar_contador()
 
